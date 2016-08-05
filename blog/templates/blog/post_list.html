@@ -1,31 +1,12 @@
-{% load staticfiles %}
-<html>
-<head>
-    <title> Hello LizQuens! ^_^ </title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-</head>
-<body>
-    <div class="page-header">
-        <h1><a href="/">Jeszy's Fan Girling Blog</a></h1>
-    </div>
-    <br />
-    <div class="content container">
-        <div class="row">
-            <div class="col-md 8">
-                {% for post in posts %}
-                <div class="post">
-                    <h2><a href="/">{{ post.title }}</a></h2>
-                    <div class="date">
-                        <p><strong>Date Published: {{ post.published_date }}</strong></p>
-                    </div>
-                    <p>{{ post.text|linebreaksbr }}</p>
-                </div>
-                {% endfor %}
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <div class="date">
+                <p><strong>Date Published: {{ post.published_date }}</strong></p>
             </div>
         </div>
-    </div>
-</body>
-</html>
+    {% endfor %}
+{% endblock content %}
