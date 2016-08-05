@@ -1,34 +1,20 @@
 <html>
 <head>
-    <title> Hello Adelle! ^_^ </title>
+    <title> Hello LizQuens! ^_^ </title>
 </head>
 <body>
     <div>
-        <h1><a href="">Jeszy's Blog</a></h1>
+        <h1><a href="">Jeszy's Fan Girling Blog</a></h1>
+        {{ posts }}
     </div>
     <br />
-    <div>
-        <p><strong>published date: 2016</strong></p>
-        <h2><a href="">First Post</a></h2>
-        <p> Hello, its me!</p>
-        <p> I was wondering if after all
-        <p> these years you'd like to meet</p>
-    </div>
-    <br />
-    <div>
-        <p><strong>published date: 2016</strong></p>
-        <h2><a href="">Second Post</a></h2>
-        <p> Hello, its me!</p>
-        <p> I was wondering if after all
-        <p> these years you'd like to meet</p>
-    </div>
-    <br />
-     <div>
-        <p><strong>published date: 2016</strong></p>
-        <h2><a href="">Third Post</a></h2>
-        <p> Hello, its me!</p>
-        <p> I was wondering if after all
-        <p> these years you'd like to meet</p>
-    </div>
+    {% for post in posts %}
+        <div>
+            <h2><a href="">{{ post.title }}</a></h2>
+            <p><strong>Date Published: {{ post.published_date }}</strong></p>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+        <br />
+    {% endfor %}
 </body>
 </html>
