@@ -1,4 +1,4 @@
-h1, h2, a {
+h1, h2, a, .post-form input, span {
     color: E35273;
     font-family: 'Lobster';
 }
@@ -33,7 +33,7 @@ h1, h2, h3, h4 {
     float: right;
 }
 
-.post-form textarea, .post-form input {
+.post-form textarea {
     width: 100%;
 }
 
