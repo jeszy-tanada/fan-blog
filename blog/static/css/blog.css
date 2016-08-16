@@ -2,6 +2,15 @@ h1, h2, a, .post-form, input {
     color: E35273;
     font-family: 'Lobster';
 }
+
+.page-header h4 a {
+    color: #ffffff;
+    font-size: 15pt;
+    margin-top: 50;
+    float: right;
+    font-family: 'Lobster';
+    padding-left: 1em
+}
 .padding-head {
     padding: 10px;
     border: 1px solid black;
@@ -25,12 +34,12 @@ body {
     text-decoration: none;
     margin-left: 0;
 }
-h6 {
+.page-header h5 {
     color: #ffffff;
-    font-size: 10pt;
-    margin-top: 70;
+    font-size: 15pt;
     float: left;
     font-family: 'Lobster';
+    text-decoration: none;
 }
 
 .content {
