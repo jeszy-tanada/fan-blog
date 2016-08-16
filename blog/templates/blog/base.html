@@ -9,12 +9,11 @@
 </head>
 <body>
     <div class="page-header">
-        {% if user.is_authenticated %}
-            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-        {% endif %}
-        <h1><a href="/">Jeszy's Fan Girling Blog</a></h1>
+        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus" style="color:#ffffff"></span></a>
+        <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit" style="color:#ffffff"></span></a>
+        <h6>Welcome, {{ user.username }}. </h6>
+        <h1 align="center">Fan Girling Blog</h1>
     </div>
-    <br />
     <div class="content container">
         <div class="row">
             <div class="col-md 8">
