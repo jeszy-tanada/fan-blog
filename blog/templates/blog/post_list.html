@@ -7,17 +7,20 @@
     {% for post in posts %}
     <div class="post">
         <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
-        <div class="date">
+        <a href="{% url 'blog.views.post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
+        <div class="date-main">
             <p>Date Published: {{ post.published_date }}</p>
         </div>
+        <hr>
     {% endfor %}
     <div class="padding-head">
         <h1>Drafts:</h1>
     </div>
     {% for post in post1 %}
         <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
-        <div class="date">
+        <div class="date-main">
             <p>Created Date: {{ post.created_date }}</p>
+            <hr>
         </div>
     </div>
     {% endfor %}

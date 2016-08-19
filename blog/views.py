@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from django.shortcuts import redirect, render_to_response
-from .models import Post, User
-from .forms import PostForm, UserCreateForm
+from django.shortcuts import redirect
+from .models import Post
+from .forms import PostForm, UserCreateForm, CommentForm
 from django.contrib.auth.decorators import login_required
 #from django.http import *
 #from django.template import RequestContext
@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     post1 = Post.objects.filter(published_date__isnull=True).order_by('created_date')
     return render(request, 'blog/post_list.html', {'posts': posts, 'post1':post1})
 
@@ -67,11 +67,22 @@ def add_user(request):
         form = UserCreateForm(request.POST)
         if form.is_valid():
             form.save()
-            #user = form.save(commit=False)
-            #user.set_password = request.POST['password']
-            #user.save()
-            #password.set_password(self.cleaned_data["password"])
             return redirect('blog.views.post_list')
     else:
         form = UserCreateForm()
     return render(request, 'blog/add_user.html', {'form': form})
+
+@login_required
+def add_comment(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.post = post
+            comment.save()
+            return redirect('blog.views.post_detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'blog/add_comment.html', {'form': form})

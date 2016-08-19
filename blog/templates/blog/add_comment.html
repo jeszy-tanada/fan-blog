@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="padding-head">
+    <h1>New Comment</h1>
+    </div>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md 8">
+                <form method="POST" class="post-form">{% csrf_token %}
+                    {{ form.as_p }}
+                    <h5><input type="submit" value="Comment!" /></h5>
+                </form>
+                <a class="btn btn-default btn-sm" href="{% url 'post_list' %}"><span class="glyphicon glyphicon-home"></span></a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
