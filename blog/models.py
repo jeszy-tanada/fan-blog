@@ -16,6 +16,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def approved_comments(self):
+        return self.comments.filter(approved_comment=True)
+
 '''
 class User(models.Model):
     username = models.CharField(max_length=30)
@@ -28,7 +31,6 @@ class User(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey('blog.Post', related_name='comments')
-    #author = models.CharField(max_length=200)
     author = models.ForeignKey('auth.User')
     text = models.TextField()
     created_date = timezone.now()

@@ -14,9 +14,11 @@
         </p>
     {% endif %}
     </div>
-
     <h2>{{ post.title }}</h2>
-    <p>{{ post.text|linebreaksbr }}</p>
+    <div class="simple-input">
+        <p>{{ post.text|linebreaksbr }}</p>
+        <p align="right"><strong>by: {{ post.author }}</strong></p>
+    </div>
     <br />
     <a class="btn btn-default btn-sm" href="{% url 'post_list' %}"><span class="glyphicon glyphicon-home"></span></a>
     {% if user.is_authenticated %}
@@ -30,8 +32,13 @@
         <br />
         <div class="post">
         {% for comment in post.comments.all %}
+            {% if comment.approved_comment or post.author == user %}
             <div class="simple-input">
                 <div class="date">
+                {% if not comment.approved_comment and post.author == user%}
+                    <a href="{% url 'comment_ok' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                    <a href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                {% endif %}
                     {{ comment.created_date }}
                 </div>
                 <h5>{{ comment.author }} says:</h5>
@@ -39,6 +46,7 @@
                     {{ comment.text|linebreaksbr }}
                 </p>
             </div>
+            {% endif %}
             <hr>
          {% empty %}
                 <p> Be the first to comment.. :) </p>

@@ -1,11 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
-from .models import Post
+from .models import Post, Comment
 from .forms import PostForm, UserCreateForm, CommentForm
 from django.contrib.auth.decorators import login_required
-#from django.http import *
-#from django.template import RequestContext
 
 # Create your views here.
 
@@ -86,3 +84,16 @@ def add_comment(request, pk):
     else:
         form = CommentForm()
     return render(request, 'blog/add_comment.html', {'form': form})
+
+@login_required
+def comment_ok(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.approve()
+    return redirect('blog.views.post_detail', pk=comment.post.pk)
+
+@login_required
+def comment_remove(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    post_pk = comment.post.pk
+    comment.delete()
+    return redirect('blog.views.post_detail', pk=post_pk)

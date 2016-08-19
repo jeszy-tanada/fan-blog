@@ -91,7 +91,7 @@ span {
 .simple-input {
   display: block;
   padding: 5px;
-  border: 4px solid #E35273;
+  border: 2px solid #E35273;
   border-radius: 5px;
   color: #333;
   transition: all 0.3s ease-out;

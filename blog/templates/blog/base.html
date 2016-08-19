@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <html>
 <head>
-    <title> Hello LizQuens! ^_^ </title>
+    <title> Ahnyeong Fans ^_^ </title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
@@ -17,7 +17,7 @@
             <h4><a href="{% url 'login' %}" >Login</a></h4>
             <h4><a href="{% url 'add_user' %}" > Register</a></h4>
         {% endif %}
-        <h1 align="center">Fan Girling Blog</h1>
+        <h1 align="center"><a href="{% url 'post_list' %}">Fan's Blog</a></h1>
     </div>
      <div class="content container">
         <div class="row">
